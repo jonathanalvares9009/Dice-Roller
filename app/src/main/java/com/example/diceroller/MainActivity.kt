@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.Random
 
 class MainActivity : AppCompatActivity() {
+
+    // late init promises the compiler that it won't remain null
+    lateinit var diceImage: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Sets the main activity
@@ -17,10 +21,10 @@ class MainActivity : AppCompatActivity() {
         rollButton.setOnClickListener {
             rollDice()
         }
+        diceImage = findViewById(R.id.dice_image)
     }
 
     private fun rollDice() {
-        val diceImage: ImageView = findViewById(R.id.dice_image)
         // Generates a random integer
         val randomInt = Random().nextInt(6) + 1
         val drawableResource = when(randomInt) {
